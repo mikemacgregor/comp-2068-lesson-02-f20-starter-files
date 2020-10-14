@@ -11,10 +11,10 @@ const Context = () => {
         `}
       </Code>
 
-      <UserProvider>
+      <>
         <div className="my-5">
         </div>
-      </UserProvider>
+      </>
     </Layout>
   );
 }
