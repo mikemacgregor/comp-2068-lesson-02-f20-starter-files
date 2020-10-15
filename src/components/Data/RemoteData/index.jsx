@@ -1,13 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useMemo, useState } from 'react';
 import Layout from '../../shared/Layout';
 import { Card, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 const RemoteData = () => {
+
+  const [data, setData] = useState([]);
+  const users = useMemo(() => data, [data]);
+
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/users').then(resp => setData(resp.data));
+  });
 
   return (
     <Layout title="Data: Remote">
       <Row className="my-5">
-        {/* {users.map((user, i) => (
+        {users.map((user, i) => (
           <Col key={i}>
             <Card className="my-2" style={{ width: '18rem' }}>
               <Card.Body>
@@ -32,7 +40,7 @@ const RemoteData = () => {
               </Card.Body>
             </Card>
           </Col>
-        ))} */}
+        ))}
       </Row>
     </Layout>
   );

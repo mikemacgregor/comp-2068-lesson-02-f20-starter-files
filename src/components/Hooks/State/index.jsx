@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import Code from '../../shared/Code';
 import Layout from '../../shared/Layout';
 
 const State = () => {
+
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1); // cannot use count++ because count is immutable (it can't change)
+  const decrement = () => setCount(count - 1);
+
   return (
     <Layout title="Hooks: State">
       <Code>{`
@@ -14,9 +20,15 @@ const State = () => {
 
       <div className="my-5">
         <ButtonGroup>
-          <Button variant="success">+</Button>
-          <Button disabled></Button>
-          <Button variant="danger">-</Button>
+          <Button 
+            onClick={increment}
+            variant="success"
+          >+</Button>
+          <Button disabled>{count}</Button>
+          <Button 
+            onClick={decrement}
+            variant="danger"
+            >-</Button>
         </ButtonGroup>
       </div>
     </Layout>

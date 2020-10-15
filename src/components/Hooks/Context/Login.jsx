@@ -1,8 +1,14 @@
 import React, { useContext } from 'react';
+import { UserContext } from './UserProvider';
 
 const Login = () => {
+
+  const { setUser } = useContext(UserContext);
+
   return (
-    <button>Login</button>
+    <button
+      onClick={() => setUser(true)}
+    >Login</button>
   );
 };
 
